@@ -14,13 +14,14 @@ app = create_app()
 @app.get('/')
 def home():
     todo_list = ToDo.query.all()
-    return render_template('todo/index.html', todo_list=todo_list, title='Главная страница')
+    return render_template('todo/index.html', todo_list=todo_list, title='Main Page')
 
 
 @app.post('/add')
 def add():
     title = request.form.get('title')
-    new_todo = ToDo(title=title, is_complete=False)
+    note = request.form.get('note')
+    new_todo = ToDo(title=title, note=note, is_complete=False)
     db.session.add(new_todo)
     db.session.commit()
     return redirect(url_for('home'))

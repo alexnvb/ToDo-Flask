@@ -6,4 +6,5 @@ db = SQLAlchemy()
 class ToDo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(300))
+    note = db.Column(db.String(500))
     is_complete = db.Column(db.Boolean)
